@@ -1,0 +1,185 @@
+.wrapper {
+   margin: 5px 10px;
+}
+
+.searchBar {
+   height: 30px;
+   padding: 7px 0 3px;
+   text-align: center;
+}
+
+#J_searchName {
+   height: 26px;
+   width: 250px;
+   padding-left: 10px;
+   border: 1px solid #e7e7eb;
+   font-size: 14px;
+   box-sizing: border-box;
+   outline: none
+}
+
+.searchBtn {
+   height: 26px;
+   padding: 0px 10px;
+   line-height: 26px;
+   box-sizing: border-box;
+   font-size: 14px;
+   background-color: #2fa9e6;
+   color: #fff;
+   border-radius: 3px;
+   border: none;
+   outline: none;
+   cursor: pointer;
+}
+
+.resultBar {
+   overflow: hidden;
+}
+
+.listPanel {
+   overflow-y: auto;
+   overflow-x: hidden;
+   height: 225px
+}
+
+.panelon {
+   display: block;
+   font-size: 14px;
+}
+
+.paneloff {
+   display: none
+}
+
+.page {
+   width: 220px;
+   margin: 20px auto;
+   overflow: hidden;
+}
+
+.pageon {
+   float: right;
+   width: 24px;
+   line-height: 24px;
+   height: 24px;
+   margin-right: 5px;
+   background: none;
+   border: none;
+   color: #000;
+   font-weight: bold;
+   text-align: center
+}
+
+.pageoff {
+   float: right;
+   width: 24px;
+   line-height: 24px;
+   height: 24px;
+   cursor: pointer;
+   background-color: #fff;
+   border: 1px solid #E7ECF0;
+   color: #2D64B3;
+   margin-right: 5px;
+   text-decoration: none;
+   text-align: center;
+}
+
+.m-box {
+   /*width: 460px;*/
+}
+
+.m-m {
+   float: left;
+   line-height: 40px;
+   height: 40px;
+}
+
+.m-h {
+   height: 24px;
+   line-height: 24px;
+   border-bottom: 1px solid #e7e7eb;
+   font-weight: bold;
+   color: #333;
+   padding-left: 40px;
+}
+
+.m-l {
+   float: left;
+   width: 40px;
+   margin-top: 14px;
+   margin-left: 0px;
+   margin-right: 0px;
+}
+
+.m-t {
+   float: left;
+   width: 160px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.m-s {
+   float: left;
+   width: 160px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.m-z {
+   float: left;
+   width: 160px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.m-try-t {
+   float: left;
+   width: 60px;
+}
+
+.m-try {
+   float: left;
+   width: 60px;
+   height: 40px;
+   margin-top: 8px;
+   background: url('../../themes/default/images/pause.png') no-repeat;
+   background-repeat: no-repeat;
+   background-size: auto 30px;
+   background-position: left center;
+}
+
+.m-trying {
+   float: left;
+   width: 60px;
+   height: 40px;
+   margin-top: 8px;
+   background: url('../../themes/default/images/stop.png') no-repeat;
+   background-repeat: no-repeat;
+   background-size: auto 20px;
+   background-position: 5px center;
+}
+
+.loading {
+   width: 95px;
+   height: 95px;
+   font-size: 7px;
+   margin: 80px auto;
+   background-size: 100%;
+}
+
+.empty {
+   padding: 2px;
+   line-height: 40px;
+   color: #333;
+   text-align: center;
+   font-size: 14px;
+}
+
+.empty p:nth-child(1) {
+   margin-top: 220px;
+   color: #f00;
+   font-size: 12px;
+}

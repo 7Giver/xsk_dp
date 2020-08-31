@@ -1,0 +1,21 @@
+.flex {
+  display: flex;
+  display: -webkit-flex;
+}
+.ycenter {
+  justify-content: center;
+  -webkit-justify-contents: center;
+}
+.xcenter {
+  align-items: center;
+  -webkit-align-items: center;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: default;
+}
+.cursor {
+  cursor: pointer;
+}

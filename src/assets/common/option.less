@@ -1,0 +1,30 @@
+// @container-width: 1600px;
+@container-width: calc(100vw - 300px);
+@container-height: calc(100vh - 46px - 38px);
+@lv-editor-height: calc(100vh - 46px - 38px - 10px - 84px );
+@main-color: #333;
+@sub-color: #999;
+@active-color: #5887EB;
+@active-bg: #E5EDFF;
+
+.flex{
+    display: flex;
+    display: -webkit-flex;
+}
+.ycenter{
+    justify-content: center;
+    -webkit-justify-contents: center;
+}
+.xcenter{
+    align-items: center;
+    -webkit-align-items: center;
+}
+.ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: default;
+}
+.cursor{
+    cursor: pointer;
+}
