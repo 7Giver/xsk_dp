@@ -51,7 +51,7 @@ export default {
         // 初始容器宽度
         initialFrameWidth: "100%",
         // 上传文件接口
-        serverUrl: "http://h5.yingku866.com/Material/uploadImg",
+        serverUrl: "http://yingku828.com/Material/uploadImg",
         // UEditor 资源文件的存放路径
         UEDITOR_HOME_URL: "/Public/Activity/dist/Qiniu/UEditor/",
         // 菜单栏配置

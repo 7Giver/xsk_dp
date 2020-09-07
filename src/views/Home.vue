@@ -114,6 +114,7 @@ export default {
     window.VUEMETHODS = {
       openLogin: this._login,
     };
+    console.log(window.location.href);
   },
   watch: {
     $route: {

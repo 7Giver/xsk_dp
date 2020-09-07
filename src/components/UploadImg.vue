@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      action: "http://h5.yingku866.com/Material/uploadImg",
+      action: "",
       disabled: false,
       uploadData: {
         file: "",
@@ -57,6 +57,8 @@ export default {
   },
   created() {
     this.imageUrl = this.picUrl;
+    const baseApi = process.env.BASE_API
+    this.action = `${baseApi}Material/uploadImg`
   },
   methods: {
     // 图片上传前触发裁剪组件

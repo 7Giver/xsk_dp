@@ -7,8 +7,8 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 // let baseApi = "'http://pc.aisspc.cn/api'"
-let baseApi = "'http://h5.yingku866.com'";
-let baseFile = "'http://h5.yingku866.com/Public/Qiniu'";
+let baseApi = "'http://yingku828.com/'";
+let baseFile = "'http://yingku828.com/Public/Qiniu'";
 
 module.exports = {
   publicPath: "/Public/Activity/dist",
@@ -19,7 +19,7 @@ module.exports = {
   //   port: 8080,
   //   proxy:{
   //       '/api':{
-  //           target: 'http://h5.yingku866.com',//代理地址，这里设置的地址会代替axios中设置的baseURL
+  //           target: baseApi,//代理地址，这里设置的地址会代替axios中设置的baseURL
   //           changeOrigin: true,// 如果接口跨域，需要进行这个参数配置
   //           //ws: true, // proxy websockets
   //           //pathRewrite方法重写url
@@ -43,7 +43,7 @@ module.exports = {
       baseFile =
         mode === "dev"
           ? "'http://localhost:8080/Qiniu'"
-          : "'http://h5.yingku866.com/Public/Qiniu'";
+          : "'http://yingku828.com/Public/Qiniu'";
       args[0]["process.env"].BASE_API = baseApi;
       args[0]["process.env"].BASE_File = baseFile;
       return args;

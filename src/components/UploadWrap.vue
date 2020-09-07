@@ -161,7 +161,7 @@ export default {
   data() {
     return {
       imageUrl: "",
-      uploadUrl: "http://h5.yingku866.com/Material/uploadImg",
+      uploadUrl: "",
       audioSelectInit: "",
       typeOptions: [
         {
@@ -229,6 +229,8 @@ export default {
     };
   },
   created() {
+    const baseApi = process.env.BASE_API
+    this.uploadUrl = `${baseApi}Material/uploadImg`
     this._editorMyArticle();
   },
   methods: {

@@ -41,7 +41,9 @@ router.beforeEach((to, from, next) => {
 
   checkBrowser();
   const baseFile = store.state.baseFile;
+  // console.log(baseFile);
   if (!baseFile) {
+    console.log(111);
     store.commit("setBaseFile");
   }
   if (to.meta.title) {

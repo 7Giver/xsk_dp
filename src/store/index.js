@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    baseFile: "http://h5.yingku866.com/Public/Qiniu",
+    baseFile: 'http://yingku828.com/Public/Qiniu',
     userId: null,
     userBrand: null,
     userBid: null,
