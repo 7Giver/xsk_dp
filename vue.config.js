@@ -10,6 +10,9 @@ function resolve(dir) {
 let baseApi = "'http://yingku828.com/'";
 let baseFile = "'http://yingku828.com/Public/Qiniu'";
 
+// let baseApi = "'http://yingku866.com/'";
+// let baseFile = "'http://yingku866.com/Public/Qiniu'";
+
 module.exports = {
   publicPath: "/Public/Activity/dist",
   outputDir: "dist",

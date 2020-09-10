@@ -162,6 +162,7 @@ export default {
       }
     },
     _closeLogin(data) {
+      this.$router.go(0);
       // if(data.data.length === 1){
       //   this.accountsVisible = false;
       //   this.$refs.login.chooseAccount(data.data[0])

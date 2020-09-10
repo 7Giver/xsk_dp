@@ -31,6 +31,9 @@
           v-model="ruleForm.brand"
           :disabled="brandDisabled"
           @change="selectBrandChange"
+          placeholder="请选择品牌"
+          filterable
+          clearable
         >
           <el-option
             v-for="(item, index) in brandList" 
@@ -174,7 +177,7 @@ export default {
           },
         ],
         readText: [{ required: true }],
-        brand: [{required: true}]
+        brand: [{required: true, message: "请选择品牌",}]
       },
       props: {
         label: 'name',
