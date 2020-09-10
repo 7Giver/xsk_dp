@@ -386,6 +386,13 @@ export default {
     getModalStatus(obj) {
       this.cropperImg = obj.cropperImg;
       this.isShowCropper = obj.cropperShow;
+      uploadImg(obj.cropperImg).then((res) => {
+        console.log("res :>> ", res);
+        if (res.data.code == 200) {
+          this.form.bgImage = res.data.url;
+          this.$root.eventVue.$emit("cover", res.data.url);
+        }
+      });
     },
 
     // 文件上传-接口-上传文件
@@ -399,7 +406,6 @@ export default {
       // var fd = new FormData();
       // fd.append("file", file, "图片.png");
       // fd.append("project", "micropark_coordination");
-
       uploadImg(file).then((res) => {
         console.log("res :>> ", res);
         if (res.data.code == 200) {

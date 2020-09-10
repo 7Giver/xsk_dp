@@ -69,20 +69,29 @@ export default {
         return;
       }
       let file = option.file;
-      let reader = new FileReader();
-      if (file) {
-        reader.readAsDataURL(file);
-      }
-      reader.onload = () => {
-        let src = reader.result;
-        // this.cropperShow = true
-        // this.cropperImg = src
-        let obj = {
-          cropperShow: true,
-          cropperImg: src,
-        };
-        this.$emit("modalShowFn", obj);
+      
+      // 不使用裁剪
+      let obj = {
+        cropperShow: false,
+        cropperImg: file,
       };
+      this.$emit("modalShowFn", obj);
+
+      //使用裁剪
+      // let reader = new FileReader();
+      // if (file) {
+      //   reader.readAsDataURL(file);
+      // }
+      // reader.onload = () => {
+      //   let src = reader.result;
+      //   // this.cropperShow = true
+      //   // this.cropperImg = src
+      //   let obj = {
+      //     cropperShow: true,
+      //     cropperImg: src,
+      //   };
+      //   this.$emit("modalShowFn", obj);
+      // };
     },
     handleRemove(file) {
       this.imageUrl = "";
