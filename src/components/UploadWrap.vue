@@ -567,20 +567,27 @@ export default {
 }
 
 .uploadWrap-contanner {
-  margin-top: 10px;
+  margin-top: 5px;
   .item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-start;
+    // align-items: center;
     .item-l,
     .item-r {
-      display: flex;
-      align-content: center;
-      margin-top: 20px;
+      // display: flex;
+      // align-content: center;
+      // margin-top: 20px;
       .label {
-        line-height: 126px;
+        line-height: 32px;
         margin-right: 10px;
         white-space: nowrap;
+      }
+    }
+
+    .item-l{
+      &.upload{
+        margin-top: 10px;
       }
     }
     .audioSelect {
@@ -598,17 +605,26 @@ export default {
     }
     .wrap {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       margin-top: 10px;
-      margin-right: 30px;
+      color: #606266;
+      font-size: 14px;
+      // margin-right: 30px;
+      
+      width: 100%;
+      /deep/.el-select{
+        width: 100%;
+      }
+
       &:last-child {
         margin-right: 0;
       }
       .label {
-        margin-right: 10px;
+        // margin-right: 10px;
         // white-space: nowrap;
         text-align: center;
-        margin-right: 10px;
+        margin-bottom: 5px;
       }
     }
   }

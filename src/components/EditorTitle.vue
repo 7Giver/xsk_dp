@@ -259,14 +259,22 @@ export default {
 </script>
 
 <style lang="less" scoped>
-/deep/.el-form-item__content{
+/deep/.el-form-item__content {
   flex: 1;
-  .el-select{
+  .el-select {
+    width: 100%;
+  }
+  .el-date-editor {
     width: 100%;
   }
 }
 /deep/.el-form-item {
   display: flex;
+  flex-direction: column;
+  margin-bottom: initial;
+  .el-form-item__label {
+    text-align: left;
+  }
 }
 .editorTitle-container {
   .item {

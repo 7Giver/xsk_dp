@@ -216,7 +216,8 @@ export default {
     }
     .container {
       height: @container-height;
-      width: @container-width;
+      // width: @container-width;
+      width: 1400px;
       box-sizing: border-box;
       padding-top: 10px;
       .el-main {
@@ -237,7 +238,7 @@ export default {
           // width: 500px;
           height: 100%;
           flex: none;
-          margin-right: 12px;
+          margin: 0 12px;
           overflow: hidden;
           display: flex;
           flex-direction: column;
