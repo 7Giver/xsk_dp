@@ -40,11 +40,18 @@ router.beforeEach((to, from, next) => {
   }
 
   checkBrowser();
-  const baseFile = store.state.baseFile;
+  let url = window.location.href
+  let str = url.split('//')[1].split('/')[0]
+  let api = `http://${str}/`
+  let val = `${api}Public/Qiniu`
+  store.commit("setBaseFile", val);
+  // const baseFile = store.state.baseFile;
+  // console.log('111',window.location.host);
   // console.log(baseFile);
-  if (!baseFile) {
-    store.commit("setBaseFile");
-  }
+ 
+  // if (!baseFile) {
+  //   store.commit("setBaseFile", val);
+  // }
   if (to.meta.title) {
     document.title = to.meta.title;
   }

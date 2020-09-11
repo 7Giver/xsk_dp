@@ -5,7 +5,16 @@ import {
   Message
 } from 'element-ui'
 
-const baseApi = process.env.BASE_API
+// const baseApi = process.env.BASE_API
+
+let url = window.location.href
+let str = url.split('//')[1].split('/')[0]
+let api = `http://${str}/`
+console.log(api);
+
+const baseApi = api
+// console.log(window.location.host);
+
 
 const axiosInstance = axios.create({
   baseURL: baseApi,

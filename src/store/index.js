@@ -38,9 +38,10 @@ export default new Vuex.Store({
       state.isEditor = null
       window.location.reload()
     },
-    setBaseFile(state) {
-      state.baseFile = process.env.BASE_File
-      console.log('process.env.BASE_File :>> ', process.env.BASE_File);
+    setBaseFile(state, data) {
+      console.log(data);
+      state.baseFile = data
+      console.log('state.baseFile :>> ', state.baseFile);
     },
     setMemberData(state, data) {
       state.userId = data.userId ? data.userId : null
