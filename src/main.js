@@ -43,10 +43,16 @@ router.beforeEach((to, from, next) => {
   let url = window.location.href
   let str = url.split('//')[1].split('/')[0]
   let api = `http://${str}/`
+
   let val = `${api}Public/Qiniu`
+  if (api == 'http://localhost:8080/') {
+    api = process.env.BASE_API
+    val = `${process.env.BASE_API}Public/Qiniu`
+  }
+  store.commit("setBaseApi", api);
   store.commit("setBaseFile", val);
   // const baseFile = store.state.baseFile;
-  // console.log('111',window.location.host);
+  
   // console.log(baseFile);
  
   // if (!baseFile) {

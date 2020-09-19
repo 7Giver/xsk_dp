@@ -7,7 +7,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    baseFile: '',
+    baseApi: '',
+    baseFile: 'http://yingku866.com/Public/Qiniu',
     userId: null,
     userBrand: null,
     userBid: null,
@@ -38,10 +39,13 @@ export default new Vuex.Store({
       state.isEditor = null
       window.location.reload()
     },
+    setBaseApi(state, data) {
+      state.baseApi = data
+      // console.log('state.baseApi :>> ', state.baseApi);
+    },
     setBaseFile(state, data) {
-      console.log(data);
       state.baseFile = data
-      console.log('state.baseFile :>> ', state.baseFile);
+      // console.log('state.baseFile :>> ', state.baseFile);
     },
     setMemberData(state, data) {
       state.userId = data.userId ? data.userId : null

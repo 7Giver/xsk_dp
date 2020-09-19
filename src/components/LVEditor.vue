@@ -51,7 +51,8 @@ export default {
         // 初始容器宽度
         initialFrameWidth: "100%",
         // 上传文件接口
-        serverUrl: `${process.env.BASE_API}Material/uploadImg`,
+        serverUrl: '',
+        // serverUrl: `${process.env.BASE_API}Material/uploadImg`,
         // UEditor 资源文件的存放路径
         UEDITOR_HOME_URL: "/Public/Activity/dist/Qiniu/UEditor/",
         // 菜单栏配置
@@ -141,6 +142,9 @@ export default {
   },
   created() {
     this.init();
+    let baseApi = this.$store.state.baseApi
+    this.myConfig.serverUrl = `${baseApi}Material/uploadImg`
+    console.log(this.myConfig.serverUrl);
   },
   mounted() {},
   computed: {

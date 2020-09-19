@@ -7,11 +7,11 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 // let baseApi = "'http://pc.aisspc.cn/api'"
-let baseApi = "'http://yingku828.com/'";
-let baseFile = "'http://yingku828.com/Public/Qiniu'";
+// let baseApi = "'http://yingku828.com/'";
+// let baseFile = "'http://yingku828.com/Public/Qiniu'";
 
-// let baseApi = "'http://yingku866.com/'";
-// let baseFile = "'http://yingku866.com/Public/Qiniu'";
+let baseApi = "'http://yingku866.com/'";
+let baseFile = "'http://yingku866.com/Public/Qiniu'";
 
 module.exports = {
   publicPath: "/Public/Activity/dist",
