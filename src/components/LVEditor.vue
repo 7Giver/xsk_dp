@@ -40,6 +40,8 @@ export default {
       mode: "observer",
       content: "",
       myConfig: {
+        //是否允许图片可拉伸
+        imageScaleEnabled: true,
         catchRemoteImageEnable: false,
         // 编辑器不显示字数统计
         elementPathEnabled: false,
