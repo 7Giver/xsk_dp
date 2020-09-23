@@ -18859,24 +18859,48 @@
      * ```
      */
     me.commands["insertvideo"] = {
-      execCommand: function (a, b, d) {
-        b = utils.isArray(b) ? b : [b];
-        for (var e, f, g = [], h = 0, i = b.length; h < i; h++) f = b[h],
-          e = "upload" == d ? "edui-upload-video video-js vjs-default-skin" :
-            "edui-faked-video",
-          g.push(
-            '<section class="video-ng"><p style="font-size:14px;color:#888;text-align:center;">视频名称</p><iframe class="video_iframe" width="100%" height="277.5" style="z-index:1;" frameborder="0" src="https://v.qq.com/iframe/preview.html?vid=' +
-            f.vid + '&auto=0" allowfullscreen=""></iframe></seciton>');
-        this.execCommand("inserthtml", g.join(""), !0);
+      execCommand: function (e, t, i) {
+        // console.log('insertvideo-e', e)
+        // console.log('insertvideo-t', t)
+        // console.log('insertvideo-i', i)
+        if(i === 'upload') {
+          let url = t.url
+          let videoDom = `<p class="outer_box" style="text-align:center;position:relative"><a class="dom_del" data-h="t.del_dom(this)" style="position:absolute;left:0;top:0;font-size: 0.24rem;line-height: 0.44rem;display:inline-block;padding:0 0.1rem;background-color:rgba(245, 6, 6, 0.5);z-index:3;color:#fff;transform: translateY(-100%);display: none"><i class="fa fa-trash-o"></i> 删除</a><video src="${url}" poster="${url}?vframe/png/offset/1" controls playsinline="" webkit-playsinline="" x5-video-player-type="h5-page" width="100%"></video></p>`;
+          this.execCommand("inserthtml", videoDom, !0)
+        } else {
+          for (var n, o = [], r = 0, a = (t = utils.isArray(t) ? t : [t]).length; r < a; r++) n = t[r],
+            "upload" == i ? "edui-upload-video video-js vjs-default-skin" : "edui-faked-video",
+            o.push(
+              `<p class="outer_box" style="text-align:center;position:relative"><a class="dom_del" data-h="t.del_dom(this)" style="position:absolute;left:0;top:0;font-size: 0.24rem;line-height: 0.44rem;display:inline-block;padding:0 0.1rem;background-color:rgba(245, 6, 6, 0.5);z-index:3;color:#fff;transform: translateY(-100%);display: none"><i class="fa fa-trash-o"></i> 删除</a><iframe width="100%" src="${n.url}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe></p>`
+            );
+          this.execCommand("inserthtml", o.join(""), !0)
+        }
 
+          // videoObjs = utils.isArray(videoObjs) ? videoObjs : [videoObjs];
+          // var html = [], id = 'tmpVedio', cl;
+          // for (var i = 0, vi, len = videoObjs.length; i < len; i++) {
+          //     vi = videoObjs[i];
+          //     cl = (type == 'upload' ? 'edui-upload-video video-js vjs-default-skin' : 'edui-faked-video');
+          //     html.push(creatInsertStr(vi.url, vi.width || 420, vi.height || 280, id + i, null, cl, 'image'));
+          // }
+          // me.execCommand("inserthtml", html.join(""), true);
+          // var rng = this.selection.getRange();
+          // for (var i = 0, len = videoObjs.length; i < len; i++) {
+          //     var img = this.document.getElementById('tmpVedio' + i);
+          //     domUtils.removeAttributes(img, 'id');
+          //     rng.selectNode(img).select();
+          //     me.execCommand('imagefloat', videoObjs[i].align)
+          // }
       },
       queryCommandState: function () {
-        var a = this.selection.getRange().getClosedNode(),
-          b = a && ("edui-faked-video" == a.className || a.className.indexOf(
-            "edui-upload-video") != -1);
-        return b ? 1 : 0
+        var e = this.selection.getRange().getClosedNode();
+        return e && ("edui-faked-video" == e.className || -1 != e.className.indexOf(
+          "edui-upload-video")) ? 1 : 0
+          // var img = me.selection.getRange().getClosedNode(),
+          //     flag = img && (img.className == "edui-faked-video" || img.className.indexOf("edui-upload-video") != -1);
+          // return flag ? 1 : 0;
       }
-    };
+  };
   };
 
 

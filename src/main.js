@@ -45,7 +45,7 @@ router.beforeEach((to, from, next) => {
   let api = `http://${str}/`
 
   let val = `${api}Public/Qiniu`
-  if (api == 'http://localhost:8080/') {
+  if (api == 'http://192.168.1.107:8080/') {
     api = process.env.BASE_API
     val = `${process.env.BASE_API}Public/Qiniu`
   }

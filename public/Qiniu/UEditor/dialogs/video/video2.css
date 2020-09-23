@@ -1,0 +1,128 @@
+#upload .status_bar {
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0 50px 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  background-color: #fff;
+}
+#upload .status_bar.invisible {
+  display: none;
+}
+#upload .status_bar .progress {
+  width: 100%;
+  height: 20px;
+  box-sizing: border-box;
+  border: 1px solid #e6e6e6;
+  position: relative;
+  z-index: 1;
+}
+#upload .status_bar .progress > span {
+  display: inline-block;
+}
+#upload .status_bar .progress .text {
+  width: 100%;
+  font-size: 16px;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  color: #333;
+}
+#upload .status_bar .progress .percentage {
+  width: 0;
+  height: 100%;
+  background: #5887eb;
+}
+#uploadArea {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+#uploadArea .upload_box,
+#uploadArea .video_box {
+  width: 548px;
+  height: 280px;
+  box-sizing: border-box;
+  border: 1px solid #e6e6e6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+#uploadArea .upload_box.invisible,
+#uploadArea .video_box.invisible {
+  display: none;
+}
+#uploadArea .upload_box > img,
+#uploadArea .video_box > img {
+  width: 80px;
+  height: auto;
+}
+#uploadArea .upload_box > span,
+#uploadArea .video_box > span {
+  font-size: 16px;
+  color: #999;
+}
+#uploadArea .upload_box > input[type=file],
+#uploadArea .video_box > input[type=file] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  opacity: 0;
+}
+#uploadArea .video_loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#uploadArea .video_loading.invisible {
+  display: none;
+}
+#uploadArea .video_loading > h5 {
+  font-size: 16px;
+}
+.tipMsg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 20px 30px;
+}
+.tipMsg > h5 {
+  font-size: 18px;
+  color: #5887EB;
+  margin-top: 10px;
+}
+.tipMsg > p {
+  font-size: 14px;
+  color: #999;
+  line-height: 2;
+}
+/*# sourceMappingURL=video2.css.map */

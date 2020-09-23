@@ -483,7 +483,7 @@ function getCellValue ( cell ) {
 
 //dialog确认事件
 dialog.onok = function () {
-
+    console.log('ok',111);
     //收集信息
     var form = document.forms[ 'data-form' ],
         info = getUserConfig();

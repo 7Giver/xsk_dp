@@ -205,6 +205,10 @@ export default {
         const data = res.data
         if (data.code == 200) {
           this.brandList = data.data
+          this.brandList.unshift({
+            api_company_id: '0',
+            name: '全品牌'
+          })
         }
       })
     },

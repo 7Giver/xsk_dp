@@ -253,7 +253,7 @@ export default {
         return;
       }
 
-      if (this.audioType) {
+      if (this.audioType == 1) {
         if (!this.videoType) {
           this.$message.error("请正确选择视频类型");
           return;
@@ -263,6 +263,13 @@ export default {
           return;
         }
       }
+
+      const loading = this.$loading({
+        lock: true,
+        text: '拼命加载中',
+        spinner: 'el-icon-loading',
+        background: 'rgba(255, 255, 255, 0.9)'
+      });
 
       let params = {
         id: this.$route.query.id,
@@ -283,6 +290,7 @@ export default {
 
       pushNewsData(params).then((res) => {
         if (res.data.code == 200) {
+          loading.close();
           this.$util.ToastSuccess("发布成功");
           this.$store.commit("saveTmpArticle", "");
           this.$router.push(`/home/work`);
