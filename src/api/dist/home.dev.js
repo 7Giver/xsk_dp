@@ -72,7 +72,7 @@ function getTemplate(params) {
 
 
 function getQiniuToken(params) {
-  return (0, _http.get)('/Material/getQiniuToken', params);
+  return (0, _http.get)('/Material/getUploadToken', params);
 }
 /**
  * @desc 上传图片

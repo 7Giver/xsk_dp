@@ -7,6 +7,7 @@
           class="audioSelect"
           v-model="audioSelectInit"
           placeholder="请选择"
+          clearable
           @change="selectAudioType"
         >
           <el-option
@@ -24,6 +25,7 @@
         <el-select
           v-model="videoTypeVal"
           placeholder="请选择"
+          clearable
           @change="selectVideoType"
         >
           <el-option
@@ -219,6 +221,7 @@ export default {
       audioDuration: "",
       uploadForm: {
         key: "",
+        domain: "",
         token: "",
       },
       hideUpload: false,
@@ -311,10 +314,11 @@ export default {
         return;
       }
       const current = new Date().getTime();
-      const key = `editor/video/${formatTimeToStr(
-        new Date(),
-        "yyyyMMdd"
-      )}/video_${current}.${file.name.split(".")[1]}`; // key为上传后文件名 必填
+      // const key = `editor/Audio/${formatTimeToStr(
+      //   new Date(),
+      //   "yyyyMMdd"
+      // )}/Audio_${current}.${file.name.split(".")[1]}`; // key为上传后文件名 必填
+      const key = `${current}.${file.name.split(".")[1]}`
       const fileSize = file.size / 1024 / 1024 < 50;
       if (
         [
@@ -339,9 +343,11 @@ export default {
 
       try {
         const res = await getQiniuToken();
+        // console.log('res>>>>>',res);
         this.uploadForm = {
           key,
-          token: res.data.data,
+          domain: res.data.domain,
+          token: res.data.uptoken,
         };
         return true;
       } catch (error) {
@@ -365,7 +371,8 @@ export default {
       this.videoUploadPercent = 0;
       //前台上传地址
       if (file.status == "success") {
-        const url = `http://cdn.tuku679.com/${file.response.key}`;
+        // const url = `http://cdn.tuku679.com/${file.response.key}`;
+        const url = this.uploadForm.domain + file.response.key
         this.videoForm.showVideoPath = url;
         this.$root.eventVue.$emit("vid", url);
       } else {
@@ -387,7 +394,7 @@ export default {
       this.cropperImg = obj.cropperImg;
       this.isShowCropper = obj.cropperShow;
       uploadImg(obj.cropperImg).then((res) => {
-        console.log("res :>> ", res);
+        // console.log("res :>> ", res);
         if (res.data.code == 200) {
           this.form.bgImage = res.data.url;
           this.$root.eventVue.$emit("cover", res.data.url);
@@ -407,7 +414,7 @@ export default {
       // fd.append("file", file, "图片.png");
       // fd.append("project", "micropark_coordination");
       uploadImg(file).then((res) => {
-        console.log("res :>> ", res);
+        // console.log("res :>> ", res);
         if (res.data.code == 200) {
           this.form.bgImage = res.data.url;
           this.isShowCropper = false;
@@ -443,16 +450,19 @@ export default {
         return;
       }
       const current = new Date().getTime();
-      const key = `editor/Audio/${formatTimeToStr(
-        new Date(),
-        "yyyyMMdd"
-      )}/Audio_${current}.${file.name.split(".")[1]}`; // key为上传后文件名 必填
+      // const key = `editor/Audio/${formatTimeToStr(
+      //   new Date(),
+      //   "yyyyMMdd"
+      // )}/Audio_${current}.${file.name.split(".")[1]}`; // key为上传后文件名 必填
+      const key = `${current}.${file.name.split(".")[1]}`
 
       try {
         const res = await getQiniuToken();
+        // console.log('res>>>>>',res);
         this.uploadForm = {
           key,
-          token: res.data.data,
+          domain: res.data.domain,
+          token: res.data.uptoken,
         };
         return true;
       } catch (error) {
@@ -462,7 +472,8 @@ export default {
     handleAudioSuccess(res, file) {
       //前台上传地址
       if (file.status == "success") {
-        const url = `http://cdn.tuku679.com/${file.response.key}`;
+        // const url = `http://cdn.tuku679.com/${file.response.key}`;
+        const url = this.uploadForm.domain + file.response.key
         this.fileList.push({ name: file.name, url });
         // this.videoForm.showVideoPath = url;
         this.$root.eventVue.$emit("vid", url);

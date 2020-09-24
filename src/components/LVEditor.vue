@@ -208,7 +208,7 @@ export default {
       this.$emit("clearOuterContent");
     },
     content(val) {
-      val && this.$store.commit("saveTmpArticle", val);
+      this.$store.commit("saveTmpArticle", val);
     },
   },
 };

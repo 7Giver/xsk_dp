@@ -109,6 +109,9 @@ export default {
     articleContent() {
       return this.$store.state.tmpArticle;
     },
+    mid() {
+      return this.$store.state.mid;
+    },
     userId() {
       return this.$store.state.userId;
     },
@@ -222,10 +225,10 @@ export default {
         this.$util.ToastLogin();
         return false;
       }
-      if (!this.articleContent) {
-        this.$util.ToastWarning("请填写内容后再进行保存");
-        return false;
-      }
+      // if (!this.articleContent) {
+      //   this.$util.ToastWarning("请填写内容后再进行保存");
+      //   return false;
+      // }
       // this.$emit('showSavePop')
 
       if (!this.title) {
@@ -273,6 +276,7 @@ export default {
 
       let params = {
         id: this.$route.query.id,
+        mid: this.mid,
         userId: this.userId,
         userBid: this.bid || this.userBid,
         tel: this.$store.state.userTel,

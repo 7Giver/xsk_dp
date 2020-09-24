@@ -5,6 +5,8 @@
         <el-input
           v-model="ruleForm.title"
           placeholder="请输入标题"
+          type="textarea"
+          :autosize="{ minRows: 1, maxRows: 4 }"
           clearable
           @change="change"
         ></el-input>

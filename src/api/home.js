@@ -19,7 +19,7 @@ export function getTemplate(params) {
  * @param params 
  */
 export function getQiniuToken(params) {
-  return get('/Material/getQiniuToken', params)
+  return get('/Material/getUploadToken', params)
 }
 
 /**

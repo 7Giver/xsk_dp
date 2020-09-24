@@ -48,6 +48,7 @@ export default new Vuex.Store({
       // console.log('state.baseFile :>> ', state.baseFile);
     },
     setMemberData(state, data) {
+      state.mid = data.mid ? data.mid : null
       state.userId = data.userId ? data.userId : null
       state.userBid = data.userBid ? data.userBid : null
       state.userBrand = data.userBrand ? data.userBrand : null
