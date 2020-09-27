@@ -136,6 +136,7 @@ export default {
               this.videoType = data.data.vido_type || 0;
               this.cover = data.data.cover || "";
               this.vid = data.data.vid || "";
+              this.bid = data.data.company_id || "";
               this.$store.commit("saveTmpArticle", data.data.content);
             }
           })
