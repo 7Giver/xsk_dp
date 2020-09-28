@@ -618,7 +618,7 @@
 }
 
 #upload .statusBar .progress {
-    border: 1px solid #1483d8;
+    border: 1px solid #fd7a4b;
     width: 198px;
     background: #fff;
     height: 18px;
@@ -627,7 +627,7 @@
     display: none;
     text-align: center;
     line-height: 18px;
-    color: #6dbfff;
+    color: #fff;
     margin: 0 10px 0 0;
 }
 
@@ -636,7 +636,7 @@
     height: 100%;
     left: 0;
     top: 0;
-    background: #1483d8;
+    background: #fd7a4b;
     position: absolute;
 }
 
@@ -692,14 +692,14 @@
 
 #upload .statusBar .btns .uploadBtn,
 #upload .statusBar .btns .uploadBtn.state-paused {
-    background: #00b7ee;
+    background: #fd7a4b;
     color: #fff;
     border-color: transparent;
 }
 
 #upload .statusBar .btns .uploadBtn:hover,
 #upload .statusBar .btns .uploadBtn.state-paused:hover {
-    background: #00a2d4;
+    background: #FD956F;
 }
 
 #upload .statusBar .btns .uploadBtn.disabled {
