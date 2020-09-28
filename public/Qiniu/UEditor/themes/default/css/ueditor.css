@@ -142,8 +142,8 @@ div.edui-box {
     /* border-top-right-radius: 2px; */
 }
 .edui-default .edui-editor-toolbarboxouter {
-    border: 1px solid #dddddd;
-    background-color: #F2F5FA;
+    border: 1px solid #ebe3e1;
+    background-color: #fff8f6;
 }
 .edui-default .edui-editor-toolbarboxinner {
     padding: 2px;
@@ -422,14 +422,14 @@ div.edui-box {
     position: relative;
 }
 .edui-default .edui-toolbar .edui-button .edui-state-hover .edui-button-wrap {
-    background-color: #e4f6ff;
+    background-color: #ffe4dc;
     padding: 0;
-    border: 1px solid #36aeea;
+    border: 1px solid #ff9d80;
 }
 .edui-default .edui-toolbar .edui-button .edui-state-checked .edui-button-wrap {
-    background-color: #cdeeff;
+    background-color: #ffe4dc;
     padding: 0;
-    border: 1px solid #36aeea;
+    border: 1px solid #ff9d80;
     border-radius: 2px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -736,13 +736,13 @@ div.edui-box {
 }
 .edui-default .edui-dialog-buttons .edui-button {
     margin-right: 10px;
-    border: 1px solid #2fa9e6;
+    border: 1px solid #fd7a4b;
     border-radius: 3px;
     color: #2fa9e6;
     cursor: pointer;
 }
 .edui-default .edui-dialog-buttons .edui-button:first-child {
-    background: #88C3FD;
+    background: rgba(253,122,75,0.8);
     border: none;
     margin-right: 20px;
 }
@@ -973,6 +973,20 @@ div.edui-box {
 }
 .edui-default .edui-toolbar .edui-for-inserttable .edui-state-active .edui-splitborder {
     border-left: 1px solid transparent;
+}
+.edui-default  .edui-for-insertaudio .edui-icon {
+    background-position: -320px -20px;
+}
+/*audio-dialog*/
+.edui-default .edui-for-insertaudio .edui-dialog-content {
+    width: 590px;
+    height: 390px;
+}
+/* audio*/
+.edui-default .edui-for-insertaudio .edui-icon:before {
+    /* background-image: url(../images/audio.png) !important; */
+    content :"\e620";
+    font-size: 18px !important;
 }
 .edui-default .edui-tablepicker .edui-infoarea {
     height: 14px;

@@ -93,7 +93,7 @@
         <template slot-scope="{ row, $index }">
           <el-button
             v-waves
-            type="primary"
+            type="info"
             size="mini"
             @click="handleUpdate(row)"
           >

@@ -177,6 +177,7 @@ export default {
           }
           &:hover,
           &.active {
+            color: @active-color;
             background-color: @active-bg;
             > a {
               color: @active-color;

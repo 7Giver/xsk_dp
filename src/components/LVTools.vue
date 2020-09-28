@@ -383,10 +383,10 @@ export default {
         cursor: pointer;
         user-select: none;
         &.preview {
-          background-color: #5887eb;
+          background-color: #5280e0;
         }
         &.save {
-          background-color: #70c45e;
+          background-color: #fd7a4b;
         }
       }
     }

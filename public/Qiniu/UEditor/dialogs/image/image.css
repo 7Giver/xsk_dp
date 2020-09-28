@@ -276,7 +276,7 @@
 
 #upload .placeholder .webuploader-pick {
     font-size: 18px;
-    background: #00b7ee;
+    background: #fd7a4b;
     border-radius: 3px;
     line-height: 44px;
     padding: 0 30px;
@@ -289,7 +289,7 @@
 }
 
 #upload .placeholder .webuploader-pick-hover {
-    background: #00a2d4;
+    background: #ff4e0f;
 }
 
 #filePickerContainer {

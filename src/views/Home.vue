@@ -210,6 +210,7 @@ export default {
       width: 100%;
       background-color: #fff;
       padding: 0;
+      color: #fd7a4b;
     }
     .el-aside {
       overflow: hidden;

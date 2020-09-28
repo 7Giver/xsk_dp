@@ -169,7 +169,8 @@
           }
           &.is-active {
             h5 {
-              color: @active-color;
+              color: #fd603c;
+              // color: @active-color;
             }
           }
         }

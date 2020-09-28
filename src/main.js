@@ -5,6 +5,7 @@ import store from "./store";
 import VueCropper from "vue-cropper";
 
 import "./plugins/element.js";
+import '../theme/index.css'
 import "./assets/common/util.js";
 import "normalize.css";
 import "animate.css";

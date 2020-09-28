@@ -112,6 +112,7 @@ export default {
             "justifyjustify",
             "|",
             "insertvideo", //视频
+            'insertaudio', //音频
             "background", //背景
             "insertimage", //多图上传
             "searchreplace", //查询替换

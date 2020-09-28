@@ -29482,6 +29482,7 @@
       'map': '~/dialogs/map/map.html',
       'gmap': '~/dialogs/gmap/gmap.html',
       'insertvideo': '~/dialogs/video/video.html?v=1.2',
+      'insertaudio':'~/dialogs/audio/audio.html',
       'help': '~/dialogs/help/help.html',
       'preview': '~/dialogs/preview/preview.html',
       'emotion': '~/dialogs/emotion/emotion.html',
@@ -29506,7 +29507,7 @@
       'blockquote', 'pasteplain', 'pagebreak',
       'selectall', 'print', 'horizontal', 'removeformat', 'time', 'date', 'unlink',
       'insertparagraphbeforetable', 'insertrow', 'insertcol', 'mergeright', 'mergedown', 'deleterow',
-      'deletecol', 'splittorows', 'splittocols', 'splittocells', 'mergecells', 'deletetable', 'drafts'
+      'deletecol', 'splittorows', 'splittocols', 'splittocells', 'mergecells', 'deletetable', 'drafts','insertaudio'
     ];
 
     for (var i = 0, ci; ci = btnCmds[i++];) {
@@ -29633,7 +29634,7 @@
     var dialogBtns = {
       noOk: ['searchreplace', 'help', 'spechars', 'webapp', 'preview'],
       ok: ['attachment', 'anchor', 'link', 'insertimage', 'map', 'gmap', 'insertframe', 'wordimage',
-        'insertvideo', 'insertframe', 'edittip', 'edittable', 'edittd', 'scrawl', 'template', 'music', 'background',
+        'insertvideo','insertaudio', 'insertframe', 'edittip', 'edittable', 'edittd', 'scrawl', 'template', 'music', 'background',
         'charts'
       ]
     };
