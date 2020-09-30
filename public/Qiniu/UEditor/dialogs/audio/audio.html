@@ -1,18 +1,21 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>音频对话框</title>
 
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <script type="text/javascript" src="../internal.js"></script>
 
     <script type="text/javascript" src="../../third-party/jquery-1.10.2.min.js"></script>
     <script src="../../third-party/webuploader/webuploader.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../../third-party/webuploader/webuploader.css">
 
-    <link rel="stylesheet" href="audio.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="audio.css"  />
+    <link rel="stylesheet" type="text/css" href="audio2.css" />
 </head>
+
 <body>
     <div class="wrapper">
         <div id="tabhead" class="tabhead">
@@ -25,49 +28,61 @@
                 <div class="top">
                     <div class="row">
                         <label for="url"><var id="lang_input_url"></var></label>
-                        <span><input class="text" id="url" type="text"/></span>
+                        <span><input class="text" id="url" type="text" /></span>
                     </div>
                 </div>
                 <div class="left">
                     <div class="row">
                         <label><var id="lang_input_size"></var></label>
-                        <span><var id="lang_input_width">&nbsp;&nbsp;</var><input class="text" type="text" id="width"/>px </span>
-                        <span><var id="lang_input_height">&nbsp;&nbsp;</var><input class="text" type="text" id="height"/>px </span>
+                        <span><var id="lang_input_width">&nbsp;&nbsp;</var><input class="text" type="text"
+                                id="width" />px </span>
+                        <span><var id="lang_input_height">&nbsp;&nbsp;</var><input class="text" type="text"
+                                id="height" />px </span>
                         <span><input id="lock" type="checkbox" disabled="disabled"><span id="lockicon"></span></span>
                     </div>
                     <div class="row">
                         <label><var id="lang_input_border"></var></label>
-                        <span><input class="text" type="text" id="border"/>px </span>
+                        <span><input class="text" type="text" id="border" />px </span>
                     </div>
                     <div class="row">
                         <label><var id="lang_input_vhspace"></var></label>
-                        <span><input class="text" type="text" id="vhSpace"/>px </span>
+                        <span><input class="text" type="text" id="vhSpace" />px </span>
                     </div>
                     <div class="row">
                         <label><var id="lang_input_title"></var></label>
-                        <span><input class="text" type="text" id="title"/></span>
+                        <span><input class="text" type="text" id="title" /></span>
                     </div>
                 </div>
-                <div class="right"><div id="preview"></div></div>
+                <div class="right">
+                    <div id="preview"></div>
+                </div>
             </div>
 
             <!-- 上传音频 -->
             <div id="upload" class="panel focus">
-                <div class="titleBar">
+                <!-- <div class="titleBar">
                     <label>标题</label>
                     <input type="text" class="uploadAudioTitle"/>
-                </div>
-                <div id="queueList" class="queueList">
-                    <div class="statusBar element-invisible">
-                        <div class="progress">
-                            <span class="text">0%</span>
-                            <span class="percentage"></span>
-                        </div><div class="info"></div>
-                        <div class="btns">
-                            <div id="filePickerBtn"></div>
-                            <div class="uploadBtn"><var id="lang_start_upload"></var></div>
-                        </div>
+                </div> -->
+                <!-- 选中上传进度条 -->
+                <div class="status_bar invisible">
+                    <div class="progress">
+                        <span class="text">0%</span>
+                        <span class="percentage"></span>
                     </div>
+                </div>
+                <div id="uploadArea">
+                    <div class="upload_box">
+                        <img src="./images/image.png" alt="">
+                        <span>上传音频</span>
+                        <input title="" type="file" name="uploadLocal" id="uploadLocalAudioInput">
+                    </div>
+                    <div class="audio_loading invisible">
+                        <h5>上传中...</h5>
+                    </div>
+                    <div class="audio_box invisible"></div>
+                </div>
+                <!-- <div id="queueList" class="queueList">
                     <div id="dndArea" class="placeholder">
                         <div class="filePickerContainer">
                             <div id="filePickerReady"></div>
@@ -76,10 +91,15 @@
                     <ul class="filelist element-invisible">
                         <li id="filePickerBlock" class="filePickerBlock"></li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
+
+    <!--qiniu sdk-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qiniu-js/3.1.1/qiniu.min.js"></script>
+    
     <script type="text/javascript" src="audio.js"></script>
 </body>
+
 </html>

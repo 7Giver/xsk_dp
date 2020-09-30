@@ -89,10 +89,13 @@
                     rFilter = /\/(?:mp4|quicktime|mov)/i;
                     rFilterTip = "您必须选择一个有效的视频文件！"
                     break
+                case 'audio':
+                    rFilter = /\/(?:mp3|mpeg|wav|wma|ogg|ape|acc)/i;
+                    rFilterTip = "您必须选择一个有效的音频文件！"
+                    break
                 default:
                     break
             }
-
             if (file.type && !rFilter.test(file.type)) {
                 alert(rFilterTip);
                 reject();
@@ -114,6 +117,9 @@
                         break
                     case 'video':
                         tipTxt = `视频太大了，会影响打开速度，小于${sizeStr}MB才行哦！`
+                        break
+                    case 'audio':
+                        tipTxt = `音频太大了，会影响打开速度，小于${sizeStr}MB才行哦！`
                         break
                     default:
                         tipTxt = `文件太大了，会影响打开速度，小于${sizeStr}MB才行哦！`

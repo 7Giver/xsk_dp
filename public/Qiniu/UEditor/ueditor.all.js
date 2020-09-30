@@ -18900,7 +18900,36 @@
           //     flag = img && (img.className == "edui-faked-video" || img.className.indexOf("edui-upload-video") != -1);
           // return flag ? 1 : 0;
       }
+    };
   };
+
+  // plugins/audio.js
+  /**
+   * audio插件， 为UEditor提供音频插入支持
+   * @file
+   * @since 1.2.6.1
+   */
+
+  UE.plugins['audio'] = function () {
+    var me = this;
+
+    /**
+     * 插入音频
+     * @command insertaudio
+     * @example
+     */
+    me.commands["insertaudio"] = {
+      execCommand: function (e, t, i) {
+        // console.log('insertaudio-e', e)
+        // console.log('insertaudio-t', t)
+        // console.log('insertaudio-i', i)
+        if(i === 'upload') {
+          let url = t.url
+          let audioDom = `<p style="text-align:center;position:relative;padding:10px 0;"><audio src="${url}" controls width="100%"></audio></p>`;
+          this.execCommand("inserthtml", audioDom, !0)
+        }
+      },
+    };
   };
 
 

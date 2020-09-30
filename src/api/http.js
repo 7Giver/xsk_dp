@@ -10,7 +10,7 @@ let baseApi = process.env.BASE_API
 let url = window.location.href
 let str = url.split('//')[1].split('/')[0]
 let api = `http://${str}/`
-if (api == 'http://192.168.1.107:8080/') {
+if (api == 'http://192.168.1.108:8080/') {
   baseApi = process.env.BASE_API
 } else {
   baseApi = api

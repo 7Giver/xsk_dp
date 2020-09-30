@@ -6,6 +6,7 @@
     window.onload = function() {
         initTabs();
         initButtons();
+        initUpload();
     };
 
     /* 初始化tab标签 */
@@ -31,14 +32,14 @@
                 }
             });
         }
-        switch (id) {
-            case "remote": // 插入音频/远程音频（预留）
-                insertaudio = insertaudio || new RemoteAudio();
-                break;
-            case "upload": // 上传音频（主要）
-                uploadaudio = uploadaudio || new UploadAudio("queueList");
-                break;
-        }
+        // switch (id) {
+        //     case "remote": // 插入音频/远程音频（预留）
+        //         insertaudio = insertaudio || new RemoteAudio();
+        //         break;
+        //     case "upload": // 上传音频（主要）
+        //         uploadaudio = uploadaudio || new UploadAudio("queueList");
+        //         break;
+        // }
     }
 
     /* 初始化onok事件 */
@@ -59,31 +60,31 @@
                     list = insertaudio.getInsertList();
                     break;
                 case "upload":
-                    list = uploadaudio.getInsertList();
-                    var count = uploadaudio.getQueueCount();
-                    if (count) {
-                        $(".info", "#queueList").html(
-                            '<span style="color:red;">' +
-                                "还有2个未上传文件".replace(/[\d]/, count) +
-                                "</span>"
-                        );
-                        return false;
-                    }
-
+                    return insertUpload();
+                    // list = uploadaudio.getInsertList();
+                    // var count = uploadaudio.getQueueCount();
+                    // if (count) {
+                    //     $(".info", "#queueList").html(
+                    //         '<span style="color:red;">' +
+                    //             "还有2个未上传文件".replace(/[\d]/, count) +
+                    //             "</span>"
+                    //     );
+                    //     return false;
+                    // }
                     // 配上标题
-                    var title = $(".uploadAudioTitle").val();
-                    if (!title || $.trim(title) == "") {
-                        alert("请填写标题");
-                        $(".uploadAudioTitle").focus();
-                        return false;
-                    }
-                    if (list) {
-                        for (var i = 0; i < list.length; i++) {
-                            var f = list[i];
-                            f["title"] = title;
-                            list[i] = f;
-                        }
-                    }
+                    // var title = $(".uploadAudioTitle").val();
+                    // if (!title || $.trim(title) == "") {
+                    //     alert("请填写标题");
+                    //     $(".uploadAudioTitle").focus();
+                    //     return false;
+                    // }
+                    // if (list) {
+                    //     for (var i = 0; i < list.length; i++) {
+                    //         var f = list[i];
+                    //         f["title"] = title;
+                    //         list[i] = f;
+                    //     }
+                    // }
                     break;
             }
 
@@ -99,6 +100,176 @@
         this.$wrap = target.constructor == String ? $("#" + target) : $(target);
         this.init();
     }
+
+    /* 插入上传音频 */
+    function insertUpload() {
+        let url = window.sessionStorage.getItem("editor_local_audio");
+        if (!url) return false;
+        window.sessionStorage.removeItem("editor_local_audio");
+        let audioObjs = {
+            url: url,
+        };
+        editor.execCommand("insertaudio", audioObjs, "upload");
+    }
+
+    /*初始化上传标签*/
+    function initUpload() {
+        $G("uploadLocalAudioInput").addEventListener(
+            "change",
+            handleUploadAudio
+        );
+        // uploadFile = new UploadFile('queueList');
+    }
+
+    function handleUploadAudio(e) {
+        // console.log(e.target.files[0]);
+        // return false
+        if (e.target.files && e.target.files[0]) {
+            let file = e.target.files[0];
+            let size = 500 * 1024 * 1024;
+            filterFile(file, { size: size, type: "audio" }).then(() => {
+                getQiniuToken().then((res) => {
+                    let token = res.uptoken;
+                    let domain = res.domain;
+                    let finishedAttr = [];
+                    let compareChunks = [];
+                    if (file) {
+                        let fileType = file.name.split(".")[1];
+                        let key = new Date().getTime() + "." + fileType;
+                        const observable = qiniu.upload(file, key, token);
+                        // 设置next,error,complete对应的操作，分别处理相应的进度信息，错误信息，以及完成后的操作
+                        let error = function(err) {
+                            alert("上传出错，请稍后重试");
+                            endAudioLoading();
+                        };
+                        let complete = function(res) {
+                            let key = res.key;
+                            let audioUrl = domain + key;
+                            console.log(audioUrl);
+                            endAudioLoading(audioUrl);
+                        };
+                        let next = function(response) {
+                            let chunks = response.chunks || [];
+                            let total = response.total;
+                            // 这里对每个chunk更新进度，并记录已经更新好的避免重复更新，同时对未开始更新的跳过
+                            for (let i = 0; i < chunks.length; i++) {
+                                if (
+                                    chunks[i].percent === 0 ||
+                                    finishedAttr[i]
+                                ) {
+                                    continue;
+                                }
+                                if (
+                                    compareChunks[i].percent ===
+                                    chunks[i].percent
+                                ) {
+                                    continue;
+                                }
+                                if (chunks[i].percent === 100) {
+                                    finishedAttr[i] = true;
+                                }
+                            }
+                            refreshAudioLoading(total.percent);
+                            compareChunks = chunks;
+                        };
+
+                        let subObject = {
+                            next: next,
+                            error: error,
+                            complete: complete,
+                        };
+                        startAudioLoading();
+                        const subscription = observable.subscribe(subObject); // 上传开始
+                    }
+                });
+            });
+        }
+    }
+
+    function endAudioLoading(url) {
+        let $audio_loading_dom = $("#uploadArea .audio_loading");
+        let $upload_box_dom = $("#uploadArea .upload_box");
+        let $status_bar_dom = $("#upload .status_bar");
+        let $audio_box_dom = $("#uploadArea .audio_box");
+        let $progress_text_dom = $status_bar_dom.find(".text");
+        let $progress_percentage_dom = $status_bar_dom.find(".percentage");
+
+        $progress_text_dom.text("0%").css({
+            transform: "translate3d(0%, -50%, 0)",
+        });
+
+        $progress_percentage_dom.css({
+            width: "0%",
+        });
+
+        if (!url) {
+            $upload_box_dom.show();
+            $audio_loading_dom.addClass("invisible");
+            $status_bar_dom.addClass("invisible");
+            return false;
+        }
+
+        window.sessionStorage.setItem("editor_local_audio", url);
+
+        $upload_box_dom.hide();
+        $audio_loading_dom.addClass("invisible");
+        $status_bar_dom.addClass("invisible");
+
+        let audioDom = document.createElement("audio");
+        $(audioDom)
+            .attr("src", url)
+            .attr("controls", true)
+            .css({
+                width: "70%",
+            });
+        $audio_box_dom.append(audioDom);
+        $audio_box_dom.removeClass("invisible");
+    }
+
+    function refreshAudioLoading(percent = 0) {
+        let $status_bar_dom = $("#upload .status_bar");
+        let $progress_text_dom = $status_bar_dom.find(".text");
+        let $progress_percentage_dom = $status_bar_dom.find(".percentage");
+        percent = Math.floor(percent);
+        $progress_text_dom.text(percent + "%").css({
+            transform: "translate3d(" + percent + "%, -50%, 0)",
+        });
+
+        $progress_percentage_dom.css({
+            width: percent + "%",
+        });
+    }
+
+    function startAudioLoading() {
+        let $audio_loading_dom = $("#uploadArea .audio_loading");
+        let $upload_box_dom = $("#uploadArea .upload_box");
+        let $status_bar_dom = $("#upload .status_bar");
+
+        $upload_box_dom.hide();
+        $audio_loading_dom.removeClass("invisible");
+        $status_bar_dom.removeClass("invisible");
+    }
+
+    function getQiniuToken() {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: "http://yingku866.com/Material/getUploadToken",
+                dataType: "json",
+                type: "GET",
+                success: function(res) {
+                    if (res.code === 200) {
+                        resolve(res);
+                    } else {
+                        reject(res);
+                    }
+                },
+                error: function(err) {
+                    reject(err);
+                },
+            });
+        });
+    }
+
     UploadAudio.prototype = {
         init: function() {
             this.audioList = [];
@@ -667,85 +838,6 @@
 
             $upload.addClass("state-" + state);
             updateTotalProgress();
-
-            function handleUploadAudio(files) {
-                console.log(files);
-                setState("uploading", files);
-
-                setTimeout(() => {
-                    setState('confirm')
-                }, 600);
-                
-                return false
-                getQiniuToken().then((res) => {
-                    let token = res.uptoken;
-                    let domain = res.domain;
-                    let finishedAttr = [];
-                    let compareChunks = [];
-                    if (file) {
-                        let fileType = file.name.split(".")[1];
-                        let key = new Date().getTime() + "." + fileType;
-                        const observable = qiniu.upload(file, key, token);
-                        // 设置next,error,complete对应的操作，分别处理相应的进度信息，错误信息，以及完成后的操作
-                        let error = function(err) {
-                            alert("上传出错，请稍后重试");
-                            endVideoLoading();
-                        };
-                        let complete = function(res) {
-                            let key = res.key;
-                            let videoUrl = domain + key;
-                            console.log(videoUrl);
-                            endVideoLoading(videoUrl);
-                        };
-                        let next = function(response) {
-                            let chunks = response.chunks || [];
-                            let total = response.total;
-                            // 这里对每个chunk更新进度，并记录已经更新好的避免重复更新，同时对未开始更新的跳过
-                            for (let i = 0; i < chunks.length; i++) {
-                                if (chunks[i].percent === 0 || finishedAttr[i]) {
-                                    continue;
-                                }
-                                if (compareChunks[i].percent === chunks[i].percent) {
-                                    continue;
-                                }
-                                if (chunks[i].percent === 100) {
-                                    finishedAttr[i] = true;
-                                }
-                            }
-                            refreshVideoLoading(total.percent);
-                            compareChunks = chunks;
-                        };
-        
-                        let subObject = {
-                            next: next,
-                            error: error,
-                            complete: complete,
-                        };
-                        startVideoLoading();
-                        const subscription = observable.subscribe(subObject); // 上传开始
-                    }
-                });
-            }
-        
-            function getQiniuToken() {
-                return new Promise((resolve, reject) => {
-                    $.ajax({
-                        url: "http://yingku866.com/Material/getUploadToken",
-                        dataType: "json",
-                        type: "GET",
-                        success: function(res) {
-                            if (res.code === 200) {
-                                resolve(res);
-                            } else {
-                                reject(res);
-                            }
-                        },
-                        error: function(err) {
-                            reject(err);
-                        },
-                    });
-                });
-            }
         },
         getQueueCount: function() {
             var file,
