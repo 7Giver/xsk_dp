@@ -113,6 +113,7 @@ export default {
   mounted() {
     window.VUEMETHODS = {
       openLogin: this._login,
+      elmessage: this._message,
     };
   },
   watch: {
@@ -198,6 +199,13 @@ export default {
     _clearOuterContent() {
       this.content = "";
     },
+    _message(str) {
+      this.$notify({
+        title: '警告',
+        message: str,
+        type: 'warning'
+      });
+    }
   },
 };
 </script>

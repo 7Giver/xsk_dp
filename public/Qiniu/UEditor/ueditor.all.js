@@ -18925,7 +18925,7 @@
         // console.log('insertaudio-i', i)
         if(i === 'upload') {
           let url = t.url
-          let audioDom = `<p style="text-align:center;position:relative;padding:10px 0;"><audio src="${url}" controls width="100%"></audio></p>`;
+          let audioDom = `<p class="audio" style="text-align:center;position:relative;padding:10px 0;"><a class="dom_del" data-h="t.del_dom(this)" style="position:absolute;left:0;top:0;font-size: 0.24rem;line-height: 0.44rem;display:inline-block;padding:0 0.1rem;background-color:rgba(245, 6, 6, 0.5);z-index:3;color:#fff;transform: translateY(-100%);display: none"><i class="fa fa-trash-o"></i>删除</a><audio src="${url}" controls style="width:100%"></audio></p>`;
           this.execCommand("inserthtml", audioDom, !0)
         }
       },
@@ -29752,6 +29752,19 @@
                         break;
                       case "insertvideo":
                         if (LVVuexData && LVVuexData['userId']) {
+                          dialog.render();
+                          dialog.open();
+                        } else {
+                          window.VUEMETHODS.openLogin()
+                        }
+                        break;
+                      case "insertaudio":
+                        if (LVVuexData && LVVuexData['userId']) {
+                          let reg = /<(\S*?)audio>/g;
+                          if (reg.test(LVVuexData.tmpArticle)) {
+                            window.VUEMETHODS.elmessage('已添加音频')
+                            return false
+                          }
                           dialog.render();
                           dialog.open();
                         } else {
